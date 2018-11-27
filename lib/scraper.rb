@@ -8,13 +8,13 @@ class Scraper
 # is a class method that scrapes the student index page ('./fixtures/student-site/index.html') and a returns an array of hashes in which each hash represents one student
     index = Nokogiri::HTML(open(index_url))
     scraped_students = []
-    cards = index.css('div.student-card')
+    cards = index.css("div.student-card")
 
     cards.collect do |card|
       scraped_students << {
-        :name => card.css('h4.student-name').text,
-        :location => card.css('p.student-location').text,
-        :profile_url => ('./fixtures/student-site') + card.css('a').attribute('href').value
+        :name => card.css("h4.student-name").text,
+        :location => card.css("p.student-location").text,
+        :profile_url => ("./fixtures/student-site") + card.css("a").attribute('href').value
       }
       end
     scraped_students
@@ -27,19 +27,19 @@ class Scraper
     profile = Nokogiri::HTML(open(profile_url))
     attributes = {}
 
-    profile.css('div.social-icon-container a').each do |link|
-    case link.attribute('href').value
+    profile.css("div.social-icon-container a").each do |link|
+    case link.attribute("href").value
     when /twitter/
-      attributes[:twitter] = link('href').value
+      attributes[:twitter] = link("href").value
     when /linkedin/
-      attributes[:linkedin] = link('href').value
+      attributes[:linkedin] = link("href").value
     when /github/
-      attributes[:github] = link('href').value
+      attributes[:github] = link("href").value
     else /blog/
-      attributes[:blog] = link('href').value
+      attributes[:blog] = link("href").value
     end
-    attributes[:profile_quote] = profile.css('div.vitals-text-container div.profile-quote').text
-    attributes[:bio] = profile.css('div.details-container div.bio-block details-block div.bio-content content-holder div.title-holder div.description-holder p').text
+    attributes[:profile_quote] = profile.css("div.vitals-text-container div.profile-quote").text
+    attributes[:bio] = profile.css("div.details-container div.bio-block details-block div.bio-content content-holder div.title-holder div.description-holder p").text
     end
     attributes
   end
