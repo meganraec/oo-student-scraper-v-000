@@ -10,7 +10,7 @@ class Scraper
     scraped_students = []
     cards = index.css("div.student-card")
 
-    cards.collect do |card|
+    cards.map do |card|
       scraped_students << {
         :name => card.css("h4.student-name").text,
         :location => card.css("p.student-location").text,
