@@ -19,7 +19,7 @@ class Student
 
   def add_student_attributes(attributes_hash)
 # uses the Scraper class to get a hash of a given students attributes and uses that hash to set additional attributes for that student.
-    attributes_hash.each_pair { |k, v|} self.send(("#{k}="), v) }
+    attributes_hash.each_pair { |k, v| self.send(("#{k}="), v) }
     end
   end
 
