@@ -8,6 +8,7 @@ class Student
 # takes in an argument of a hash and sets that new student's attributes using the key/value pairs of that hash.
 # adds that new student to the Student class' collection of all existing students, stored in the `@@all` class variable.
   student_hash.each {|key, value| self.send(("#{key}="), value)}
+  @@all << self
   end
 
   def self.create_from_collection(students_array)
