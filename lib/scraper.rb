@@ -32,7 +32,7 @@ class Scraper
     when /twitter/
       attributes[:twitter] = link('href').value
     when /linkedin/
-      attribures[:linkedin] = link('href').value
+      attributes[:linkedin] = link('href').value
     when /github/
       attributes[:github] = link('href').value
     else /blog/
