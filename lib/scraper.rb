@@ -28,18 +28,18 @@ class Scraper
     attributes = {}
 
     profile.css("div.social-icon-container a").each do |link|
-    case link.attribute("href").value
-    when /twitter/
-      attributes[:twitter] = link("href").value
-    when /linkedin/
-      attributes[:linkedin] = link("href").value
-    when /github/
-      attributes[:github] = link("href").value
-    else /blog/
-      attributes[:blog] = link("href").value
-    end
-    attributes[:profile_quote] = profile.css("div.vitals-text-container div.profile-quote").text
-    attributes[:bio] = profile.css("div.details-container div.bio-block details-block div.bio-content content-holder div.title-holder div.description-holder p").text
+      case link.attribute("href").value
+      when /twitter/
+        attributes[:twitter] = link("href").value
+      when /linkedin/
+        attributes[:linkedin] = link("href").value
+      when /github/
+        attributes[:github] = link("href").value
+      else /blog/
+        attributes[:blog] = link("href").value
+      end
+      attributes[:profile_quote] = profile.css("div.vitals-text-container div.profile-quote").text
+      attributes[:bio] = profile.css("div.details-container div.bio-block details-block div.bio-content content-holder div.title-holder div.description-holder p").text
     end
     attributes
   end
